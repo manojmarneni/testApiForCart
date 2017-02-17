@@ -1,15 +1,43 @@
 group 'com.cart'
 version '1.0-SNAPSHOT'
 
-apply plugin: 'java'
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.1.RELEASE")
+    }
+}
 
-sourceCompatibility = 1.5
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+
+jar {
+    baseName = 'testApiForCart'
+    version =  '0.1.0'
+}
 
 repositories {
     mavenCentral()
 }
 
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+task stage(dependsOn: ['build', 'clean'])
+build.mustRunAfter clean
 dependencies {
+
+    compile("org.springframework.boot:spring-boot-starter-web") {
+        exclude module: "spring-boot-starter-tomcat"
+    }
+    compile("org.springframework.boot:spring-boot-starter-jetty")
+    // end::jetty[]
+    // tag::actuator[]
+    compile("org.springframework.boot:spring-boot-starter-actuator")
     testCompile group: 'junit', name: 'junit', version: '4.11'
 
     compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.4.0'
@@ -24,6 +52,7 @@ dependencies {
     compile group: 'org.hibernate', name: 'hibernate-core', version: '5.2.5.Final'
     compile group: 'com.h2database', name: 'h2', version: '1.4.193'
     compile group: 'com.jolbox', name: 'bonecp', version: '0.8.0.RELEASE'
+    compile group: 'com.github.jsimone', name: 'webapp-runner-main', version: '8.5.11.2'
 
 
 }

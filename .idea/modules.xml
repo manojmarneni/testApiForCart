@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/cartApi.iml" filepath="$PROJECT_DIR$/.idea/modules/cartApi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/cartApi_main.iml" filepath="$PROJECT_DIR$/.idea/modules/cartApi_main.iml" group="cartApi" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/cartApi_test.iml" filepath="$PROJECT_DIR$/.idea/modules/cartApi_test.iml" group="cartApi" />
+    </modules>
+  </component>
+</project>
