@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.Valid;
 import java.util.List;
 
 
@@ -24,7 +25,7 @@ public class PostItemApiController implements PostItemApi {
     @Autowired
     ItemProcess itemProcess;
 
-    public ResponseEntity<Void> postItemPost(@ApiParam(value = "item that needs to be added" ,required=true ) @RequestBody Item item) {
+    public ResponseEntity<Void> postItemPost(@ApiParam(value = "item that needs to be added" ,required=true ) @RequestBody @Valid Item item) {
         // do some magic!
 
         itemProcess.postItem(item);

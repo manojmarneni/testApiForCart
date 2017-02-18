@@ -2,12 +2,14 @@ package io.swagger.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.context.annotation.Configuration;
 
 import javax.persistence.*;
+import javax.validation.constraints.AssertTrue;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 /**
  * Item
@@ -22,18 +24,38 @@ public class Item   {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
+
   @JsonProperty("barcode")
+  @NotNull(message = "barcode Cannot be Null")
+  @NotEmpty(message = "barcode Cannot be Empty")
   private String barcode = null;
 
   @JsonProperty("imageUrl")
+  @NotNull(message = "ImageUrl Cannot be Null")
+  @NotEmpty(message = "ImageUrl Cannot be Empty")
   private String imageUrl = null;
 
   @JsonProperty("Weight")
-  private String weight = null;
+  private int weight;
 
   public Item barcode(String barcode) {
     this.barcode = barcode;
     return this;
+  }
+
+  @AssertTrue(message = "weight of item should be between 10 and 10,000 grams")
+  public boolean isValidWeight(){
+    if(weight>10000 || weight < 10) return false;
+    return true;
+  }
+
+  @AssertTrue(message = "url image should of type .png or .jpg")
+  public boolean isValidUrl(){
+
+    String substring = imageUrl.substring(Math.max(imageUrl.length() - 4, 0));
+    if(substring.equals(".jpg")) return true;
+    else if(substring.equals(".jpg")) return true;
+    else return false;
   }
 
    /**
@@ -67,7 +89,7 @@ public class Item   {
     this.imageUrl = imageUrl;
   }
 
-  public Item weight(String weight) {
+  public Item weight(int weight) {
     this.weight = weight;
     return this;
   }
@@ -77,11 +99,11 @@ public class Item   {
    * @return weight
   **/
   @ApiModelProperty(value = "")
-  public String getWeight() {
+  public int getWeight() {
     return weight;
   }
 
-  public void setWeight(String weight) {
+  public void setWeight(int weight) {
     this.weight = weight;
   }
 
