@@ -31,13 +31,12 @@ task stage(dependsOn: ['build', 'clean'])
 build.mustRunAfter clean
 dependencies {
 
-    compile("org.springframework.boot:spring-boot-starter-web") {
-        exclude module: "spring-boot-starter-tomcat"
-    }
-    compile("org.springframework.boot:spring-boot-starter-jetty")
-    // end::jetty[]
-    // tag::actuator[]
-    compile("org.springframework.boot:spring-boot-starter-actuator")
+//    compile("org.springframework.boot:spring-boot-starter-web") {
+//        exclude module: "spring-boot-starter-tomcat"
+//    }
+//    compile("org.springframework.boot:spring-boot-starter-jetty")
+//
+//    compile("org.springframework.boot:spring-boot-starter-actuator")
     testCompile group: 'junit', name: 'junit', version: '4.11'
 
     compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.4.0'
@@ -50,7 +49,9 @@ dependencies {
 
     compile group: 'org.springframework.data', name: 'spring-data-jpa', version: '1.11.0.RELEASE'
     compile group: 'org.hibernate', name: 'hibernate-core', version: '5.2.5.Final'
-    compile group: 'com.h2database', name: 'h2', version: '1.4.193'
+//    compile group: 'com.h2database', name: 'h2', version: '1.4.193'
+    compile group: 'org.postgresql', name: 'postgresql', version: '9.4.1212'
+
     compile group: 'com.jolbox', name: 'bonecp', version: '0.8.0.RELEASE'
     compile group: 'com.github.jsimone', name: 'webapp-runner-main', version: '8.5.11.2'
 

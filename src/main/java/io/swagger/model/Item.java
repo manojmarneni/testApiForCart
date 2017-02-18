@@ -5,13 +5,23 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.springframework.context.annotation.Configuration;
+
+import javax.persistence.*;
 
 /**
  * Item
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-02-17T08:29:13.704Z")
-
+@Table(name = "ItemDetails")
+@Entity
+@Configuration
 public class Item   {
+
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private int id;
   @JsonProperty("barcode")
   private String barcode = null;
 
